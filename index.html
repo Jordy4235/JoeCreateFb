@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generator Nama Pria Indonesia</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background: #f5f5f5;
+    }
+    h1 {
+      color: #333;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 10px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    #nama {
+      margin-top: 30px;
+      font-size: 20px;
+      color: #444;
+      font-weight: bold;
+      white-space: pre-line;
+    }
+    #copyArea {
+      position: absolute;
+      left: -9999px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 Generator Nama Pria Indonesia 🎉</h1>
+  <button onclick="generateNama(1)">Generate 1 Nama</button>
+  <button onclick="generateNama(10)">Generate 10 Nama</button>
+  <button onclick="salinNama()">Salin Nama</button>
+  <div id="nama">Klik tombol di atas untuk memulai!</div>
+  <textarea id="copyArea"></textarea>
+
+  <script>
+    const daftarNama = ['Yusuf Santoso', 'Syahrul Basri', 'Ahmad Sutrisno', 'Yoga Saputra', 'Prasetyo Supriyadi', 'Wawan Hidayat', 'Yogi Saputro', 'Naufal Iskandar', 'Toni Wahyudi', 'Fajar Kurniawan', 'Galih Sukmawan', 'Zidan Hidayat', 'Oka Firmansyah', 'Iqbal Santoso', 'Dedi Suryadi', 'Verdi Ardiansyah', 'Galih Yulianto', 'Dimas Santoso', 'Gunawan Fadillah', 'Naufal Fauzi', 'Halim Santoso', 'Cahyo Febrianto', 'Syamsul Putrawan', 'Edi Kurniawan', 'Nugroho Nugraha', 'Rizal Saputro', 'Wawan Yunanto', 'Edi Supriyadi', 'Putra Putrawan', 'Budi Nugraha', 'Doni Firmansyah', 'Umar Syahputra', 'Lutfi Wahyudi', 'Ilham Santoso', 'Ari Anggara', 'Nanang Hardian', 'Dimas Ardiansyah', 'Lukman Pratama', 'Imam Wibisono', 'Syahrul Gunarto', 'Usman Permana', 'Galih Nugraha', 'Qomar Septian', 'Nugroho Prasetya', 'Yusuf Yulianto', 'Yudha Saputro', 'Junaedi Purnomo', 'Prasetyo Syahputra', 'Lutfi Febrianto', 'Candra Wahyudi', 'Syamsul Wahyudi', 'Satria Susanto', 'Bagus Sutrisno', 'Yoga Riyadi', 'Dimas Rahmat', 'Yusuf Fadillah', 'Lukman Kusuma', 'Nanang Pratama', 'Lutfi Yulianto', 'Umar Iskandar', 'Nanang Suryadi', 'Heru Anwar', 'Kusnadi Basri', 'Naufal Pratama', 'Imam Wijaya', 'Dede Wijaya', 'Nanang Sukmawan', 'Heru Wijaya', 'Lukman Suprapto', 'Lazuardi Sutrisno', 'Sandi Sasmita', 'Nanang Hakim', 'Roni Firmansyah', 'Verdi Sukmawan', 'Fajar Fauzi', 'Syahrul Subekti', 'Dede Sukmawan', 'Yudha Wibisono', 'Dimas Ridwan', 'Joko Setiawan', 'Udin Suhendra', 'Zulfan Suhendra', 'Oka Syahputra', 'Ilham Wijaya', 'Lukman Rahmat', 'Dimas Permana', 'Hafiz Nugraha', 'Gilang Supriyadi', 'Galih Suryadi', 'Mulyadi Suhendra', 'Umar Prasetya', 'Khoirul Nugraha', 'Lukman Suryadi', 'Qomar Hardian', 'Nugroho Gunarto', 'Riyan Hardian', 'Udin Yulianto', 'Reza Putrawan', 'Syamsul Saputro', 'Ilham Febrianto', 'Hendra Susanto', 'Mulyadi Kusuma', 'Heru Yunanto', 'Wawan Suprapto', 'Galih Syahputra', 'Dimas Afandi', 'Zidan Wahyudi', 'Mulyadi Ardiansyah', 'Gilang Riyadi', 'Teguh Yunanto', 'Ari Hidayat', 'Naufal Septian', 'Heru Suprapto', 'Iqbal Handoko', 'Iqbal Wibowo', 'Edi Nugraha', 'Satria Setiawan', 'Oki Wijaya', 'Eko Kusuma', 'Naufal Saputro', 'Kusnadi Suprapto', 'Khoirul Pratama', 'Julius Hakim', 'Naufal Hakim', 'Wawan Susanto', 'Usman Nugraha', 'Lutfi Riyadi', 'Halim Wahyudi', 'Eko Basri', 'Nanang Yunanto', 'Surya Susanto', 'Kusnadi Iskandar', 'Nanang Susanto', 'Heru Putrawan', 'Galih Hardian', 'Aditya Subekti', 'Bambang Handoko', 'Zidan Suprapto', 'Edi Hakim', 'Syahrul Sutrisno', 'Gilang Santoso', 'Agus Rahmat', 'Ahmad Ramadhan', 'Khoirul Ramadhan', 'Fajar Hardian', 'Maulana Hidayat', 'Qomar Suryadi', 'Edi Hardian', 'Candra Wibisono', 'Eko Afandi', 'Mulyadi Hakim', 'Riyan Wibowo', 'Agus Wibisono', 'Galih Pratama', 'Rizal Syahputra', 'Cahyo Wibowo', 'Imam Hidayat', 'Rizal Suhendra', 'Taufik Febrianto', 'Mulyadi Saputra', 'Oka Ardiansyah', 'Ilham Purnomo', 'Rudi Anwar', 'Yudha Permana', 'Surya Fadillah', 'Endang Rochmat', 'Riyan Pratama', 'Umar Putrawan', 'Fikri Afandi', 'Sandi Yulianto', 'Toni Suprapto', 'Hendra Prasetya', 'Nugroho Subekti', 'Prasetyo Sasmita', 'Bambang Afandi', 'Toni Santoso', 'Julius Handoko', 'Mulyadi Susanto', 'Candra Afandi', 'Zulfan Kusuma', 'Cahyo Pratama', 'Galih Wijaya', 'Heru Wahyudi', 'Naufal Setiawan', 'Nugroho Afandi', 'Zidan Afandi', 'Agus Yulianto', 'Yudha Rahmat', 'Zaki Anwar', 'Dede Anggara', 'Yusuf Ardiansyah', 'Zaki Setiawan', 'Heru Firmansyah', 'Junaedi Firmansyah', 'Umar Yulianto', 'Dedi Firmansyah', 'Verdi Anggara', 'Rizky Pratama', 'Khoirul Yulianto', 'Wawan Suryadi', 'Maulana Basri', 'Riyan Fauzi', 'Wawan Pratama', 'Maulana Firmansyah', 'Edi Permana', 'Galih Purnomo', 'Ari Gunarto', 'Wawan Supriyadi', 'Lukman Sukmawan', 'Heru Pratama', 'Agus Sutrisno', 'Imam Kusuma', 'Taufik Wahyudi', 'Nanang Rahmat', 'Ari Subekti', 'Kusnadi Hardian', 'Gunawan Handoko', 'Ilham Ramadhan', 'Endang Santoso', 'Riyan Sasmita', 'Taufik Pratama', 'Lazuardi Saputra', 'Yusuf Wibisono', 'Fajar Ardiansyah', 'Teguh Setiawan', 'Joko Rahmat', 'Yoga Afandi', 'Sandi Prasetya', 'Rizky Wibisono', 'Khoirul Wibowo', 'Budi Purnomo', 'Putra Yunanto', 'Lutfi Basri', 'Fauzan Saputra', 'Rizal Firmansyah', 'Halim Kurniawan', 'Wahyu Wibowo', 'Dimas Firmansyah', 'Lazuardi Iskandar', 'Dede Susanto', 'Reza Sutrisno', 'Prasetyo Suhendra', 'Aditya Purnomo', 'Hendra Suprapto', 'Syahrul Ridwan', 'Cahyo Suhendra', 'Joko Firmansyah', 'Ahmad Fauzi', 'Hafiz Subekti', 'Joko Afandi', 'Lukman Setiawan', 'Hendra Saputro', 'Sandi Fauzi', 'Nanang Yulianto', 'Roni Hakim', 'Joko Kusuma', 'Endang Yulianto', 'Umar Fadillah', 'Qomar Pratama', 'Qomar Supriyadi', 'Dimas Saputro', 'Hafiz Putrawan', 'Gunawan Susanto', 'Naufal Firmansyah', 'Oka Rochmat', 'Lutfi Anggara', 'Rafi Suprapto', 'Kusnadi Fauzi', 'Hendra Permana', 'Khoirul Firmansyah', 'Rizal Supriyadi', 'Agus Sukmawan', 'Umar Anggara', 'Yudha Anwar', 'Wawan Fauzi', 'Eko Hidayat', 'Yogi Syahputra', 'Rizal Wibowo', 'Lukman Fadillah', 'Eko Suprapto', 'Fajar Nugraha', 'Surya Saputro', 'Ilham Pratama', 'Gunawan Hakim', 'Imam Prasetya', 'Fikri Maulana', 'Zidan Purnomo', 'Maulana Rochmat', 'Imam Handoko', 'Budi Handoko', 'Iqbal Rochmat', 'Rizky Kurniawan', 'Zaki Purnomo', 'Rudi Firmansyah', 'Dedi Gunarto', 'Verdi Putrawan', 'Rudi Santoso', 'Rizky Basri', 'Oka Wibowo', 'Zidan Rochmat', 'Verdi Firmansyah', 'Wawan Riyadi', 'Syamsul Ridwan', 'Sandi Permana', 'Yoga Suryadi', 'Junaedi Prasetya', 'Rizal Maulana', 'Ari Handoko', 'Putra Septian', 'Bagus Hardian', 'Kusnadi Prasetya', 'Endang Rahmat', 'Lutfi Handoko', 'Udin Ardiansyah', 'Riyan Santoso', 'Nugroho Supriyadi', 'Ahmad Wibowo', 'Yogi Iskandar', 'Aditya Prasetya', 'Bayu Rahmat', 'Wawan Setiawan', 'Zulfan Pratama', 'Galih Sutrisno', 'Prasetyo Saputro', 'Zidan Pratama', 'Bambang Sukmawan', 'Dedi Wibisono', 'Yudha Sutrisno', 'Hendra Nugraha', 'Zaki Wahyudi', 'Prasetyo Putrawan', 'Naufal Ardiansyah', 'Joko Pratama', 'Bayu Suryadi', 'Verdi Maulana', 'Rizky Ridwan', 'Verdi Saputra', 'Udin Wibisono', 'Rafi Ramadhan', 'Reza Maulana', 'Edi Sutrisno', 'Sandi Rahmat', 'Junaedi Nugraha', 'Naufal Nugraha', 'Gilang Ardiansyah', 'Yoga Ardiansyah', 'Junaedi Basri', 'Fauzan Suhendra', 'Aditya Anggara', 'Naufal Wibowo', 'Nugroho Sukmawan', 'Wawan Iskandar', 'Yudha Ardiansyah', 'Dede Putrawan', 'Doni Sasmita', 'Toni Firmansyah', 'Rizal Santoso', 'Budi Saputro', 'Agus Susanto', 'Julius Subekti', 'Wahyu Prasetya', 'Satria Rochmat', 'Lukman Saputra', 'Nugroho Ardiansyah', 'Rizal Septian', 'Gilang Wibisono', 'Yudha Ramadhan', 'Lukman Wijaya', 'Verdi Purnomo', 'Rafi Rahmat', 'Yusuf Afandi', 'Gilang Setiawan', 'Candra Firmansyah', 'Surya Wibisono', 'Yogi Sasmita', 'Edi Saputro', 'Dedi Sutrisno', 'Rudi Prasetya', 'Zulfan Syahputra', 'Naufal Putrawan', 'Maulana Santoso', 'Heru Handoko', 'Syahrul Suhendra', 'Oki Putrawan', 'Naufal Sutrisno', 'Reza Pratama', 'Julius Nugraha', 'Taufik Basri', 'Wahyu Anwar', 'Lutfi Rochmat', 'Yogi Fauzi', 'Iqbal Suhendra', 'Wahyu Kurniawan', 'Syahrul Iskandar', 'Dimas Wibowo', 'Doni Nugraha', 'Taufik Santoso', 'Qomar Purnomo', 'Roni Suprapto', 'Bagus Saputro'];
+
+    function generateNama(jumlah) {
+      let hasil = "";
+      for (let i = 0; i < jumlah; i++) {
+        const randomIndex = Math.floor(Math.random() * daftarNama.length);
+        hasil += daftarNama[randomIndex] + (i < jumlah - 1 ? "\n" : "");
+      }
+      document.getElementById("nama").textContent = hasil;
+    }
+
+    function salinNama() {
+      const isi = document.getElementById("nama").textContent;
+      const copyArea = document.getElementById("copyArea");
+      copyArea.value = isi;
+      copyArea.select();
+      copyArea.setSelectionRange(0, 99999); // Mobile support
+      document.execCommand("copy");
+      alert("Nama berhasil disalin!");
+    }
+  </script>
+</body>
+</html>
